@@ -1,0 +1,63 @@
+.launchesTable {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(3, 3, 3, 0.1);
+  }
+  
+  .launch {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .launch h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .launch h2 {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .launch p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  button,.deleteBtn {
+    background-color: #0d7df4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  .deleteBtn{
+    background-color: red;
+  }
+  .deleteBtn:hover{
+    background-color: rgb(175, 64, 64);
+  }
+  
+  .loading {
+    font-size: 1.2rem;
+    color: #007bff;
+    text-align: center;
+  }
+  
+  .error {
+    font-size: 1.2rem;
+    color: red;
+    text-align: center;
+  }
+  
