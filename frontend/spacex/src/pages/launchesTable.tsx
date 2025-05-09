@@ -21,8 +21,8 @@ const LaunchesTable = () => {
         return <div className={styles.loading}>Loading...</div>;
     }
 
-     if (error && !error.includes("flight_number")) {
-        return <div className={styles.error}>Error: {error}</div>;
+     if (error && error.includes("flight_number")) {
+        alert(error)
     }
     
 

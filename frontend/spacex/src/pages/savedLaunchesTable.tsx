@@ -12,6 +12,7 @@ const SavedLaunchesTable = () => {
     useEffect(()=>{
         dispatch(fetchSavedLaunches())
     },[dispatch])
+
     const handleDelete = (id:string)=>{
         dispatch(deleteLaunch(id))
     }

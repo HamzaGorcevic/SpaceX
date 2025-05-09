@@ -67,10 +67,12 @@ const launchesSlice = createSlice({
             .addCase(fetchLaunches.fulfilled,(state:initialStateType,action)=>{
                 state.loading=false,
                 state.launches=action.payload
+                state.error=""
             })
             .addCase(fetchLaunches.rejected,(state:initialStateType,action)=>{
                 state.loading=false,
                 state.error=action.error.message
+
             })
             .addCase(fetchSavedLaunches.pending,(state:initialStateType)=>{
                 state.loading=true
@@ -78,6 +80,8 @@ const launchesSlice = createSlice({
             .addCase(fetchSavedLaunches.fulfilled,(state:initialStateType,action)=>{
                 state.savedLaunches = action.payload
                 state.loading=false
+                state.error=""
+
             })
             .addCase(fetchSavedLaunches.rejected,(state:initialStateType,action)=>{
                 state.loading=false
@@ -89,6 +93,8 @@ const launchesSlice = createSlice({
             .addCase(saveLaunch.fulfilled,(state:initialStateType,action)=>{
                 state.loading=false
                 state.savedLaunches.push(action.payload)
+                state.error=""
+
             })
             .addCase(saveLaunch.rejected,(state:initialStateType,acion)=>{
                 state.loading = false
@@ -100,6 +106,8 @@ const launchesSlice = createSlice({
             .addCase(deleteLaunch.fulfilled,(state:initialStateType,action)=>{
                 state.loading = false
                 state.savedLaunches = state.savedLaunches.filter((launch:Launch)=>launch._id != action.payload)
+                state.error=""
+
             })
             .addCase(deleteLaunch.rejected,(state:initialStateType,acion)=>{
                 state.loading = false
