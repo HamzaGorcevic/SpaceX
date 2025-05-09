@@ -28,7 +28,7 @@ export const fetchLaunches = createAsyncThunk('launches/fetchLaunches', async ()
 
 export const fetchSavedLaunches = createAsyncThunk('launches/fetchSavedLaunches', async () => {
     try {
-        const response = await axios.get('http://localhost:3000/api/launches');
+        const response = await axios.get('https://spacex-production-c1f9.up.railway.app/api/launches');
         return response.data?.launches;
     } catch (err: any) {
             throw new Error(err.response.data.message || 'Error fetching saved launches');
@@ -38,7 +38,7 @@ export const fetchSavedLaunches = createAsyncThunk('launches/fetchSavedLaunches'
 
 export const saveLaunch = createAsyncThunk('launches/createLaunch', async (launch: Launch) => {
     try {
-        await axios.post('http://localhost:3000/api/launches', launch);
+        await axios.post('https://spacex-production-c1f9.up.railway.app/api/launches', launch);
         return launch;
     } catch (err: any) {
             throw new Error(err.response.data.message || 'Error saving launch');
@@ -48,7 +48,7 @@ export const saveLaunch = createAsyncThunk('launches/createLaunch', async (launc
 
 export const deleteLaunch = createAsyncThunk('launches/deleteLaunch', async (id: string) => {
     try {
-        await axios.delete(`http://localhost:3000/api/launches/delete/${id}`);
+        await axios.delete(`https://spacex-production-c1f9.up.railway.app/api/launches/delete/${id}`);
         return id;
     } catch (err: any) {
             throw new Error(err.response.data.message || 'Error deleting launch');
