@@ -1,6 +1,4 @@
 import { Box, Button, Typography } from '@mui/material';
-import { purple } from '@mui/material/colors';
-
 
 export default function Error({error="404"}:{error?:string}) {
   return (
