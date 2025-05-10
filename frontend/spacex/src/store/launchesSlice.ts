@@ -87,30 +87,20 @@ const launchesSlice = createSlice({
                 state.loading=false
                 state.error = action.error.message
             })
-            .addCase(saveLaunch.pending,(state:initialStateType)=>{
-                state.loading = true
-            })
             .addCase(saveLaunch.fulfilled,(state:initialStateType,action)=>{
-                state.loading=false
                 state.savedLaunches.push(action.payload)
                 state.error=""
 
             })
             .addCase(saveLaunch.rejected,(state:initialStateType,acion)=>{
-                state.loading = false
                 state.error = acion.error.message
             })
-            .addCase(deleteLaunch.pending,(state:initialStateType)=>{
-                state.loading = true
-            })
             .addCase(deleteLaunch.fulfilled,(state:initialStateType,action)=>{
-                state.loading = false
                 state.savedLaunches = state.savedLaunches.filter((launch:Launch)=>launch._id != action.payload)
                 state.error=""
 
             })
             .addCase(deleteLaunch.rejected,(state:initialStateType,acion)=>{
-                state.loading = false
                 state.error=acion.error.message
             })
     }
