@@ -43,10 +43,10 @@ const LaunchesTable = () => {
 
     return (
         <Container sx={{mt:'2rem',mx:"auto"}}  maxWidth="lg" disableGutters>
-            <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 3, sm: 8, md: 12 }}>
+            <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
             {launches.map((launch: Launch,index:number) => (
                     <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-                    <LaunchCard launch={launch}  onAction={handleSave} loader={launch.flight_number === savingId} actionLabel='Save Launch'/>
+                    <LaunchCard launch={launch}  onAction={handleSave} loader={launch.flight_number === savingId} actionLabel='Save Launch' actionColor='primary'/>
                 </Grid>
 
             ))}

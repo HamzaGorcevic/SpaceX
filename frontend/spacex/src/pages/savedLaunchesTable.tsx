@@ -7,6 +7,7 @@ import Loader from '../components/loader'
 import { Container, Grid } from '@mui/material'
 import LaunchCard from '../components/launchCard'
 import { toast } from 'react-toastify'
+import Error from './error404'
 
 const SavedLaunchesTable = () => {
     const [savingId,setSavingId] = useState<string|undefined>("")
@@ -34,16 +35,15 @@ const SavedLaunchesTable = () => {
     }
 
     if (error) {
-        return <div >Error: {error}</div>;
+        return <Error error={error}/>;
     }
 
     return (
         <Container sx={{mt:'2rem',mx:"auto"}}  maxWidth="lg" disableGutters>
-            <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 3, sm: 8, md: 12 }}>
+            <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
             {savedLaunches.map((launch: Launch,index:number) => (
-                    <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-
-                    <LaunchCard launch={launch}  onAction={(launch:Launch)=>{handleDelete(launch._id!)}} loader={launch._id === savingId} actionLabel='Delete Launch'/>
+                    <Grid key={index} size={{ xs: 2, sm: 4, md: 5 }}>
+                    <LaunchCard launch={launch}  onAction={(launch:Launch)=>{handleDelete(launch._id!)}} loader={launch._id === savingId} actionLabel='Delete Launch' actionColor='error'/>
                 </Grid>
 
             ))}
