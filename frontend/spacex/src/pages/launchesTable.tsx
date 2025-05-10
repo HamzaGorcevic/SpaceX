@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const LaunchesTable = () => {
     const [savingId,setSavingId] = useState<string|undefined>("")
     const dispatch = useDispatch<AppDispatch>()
-    const {launches,loading,error} = useSelector((state:RootState)=>state.launches)
+    const {launches,loading} = useSelector((state:RootState)=>state.launches)
     useEffect((
     )=>{
         dispatch(fetchLaunches())
