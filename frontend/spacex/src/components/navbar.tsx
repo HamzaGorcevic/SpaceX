@@ -79,16 +79,14 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-                <MenuItem  onClick={handleCloseNavMenu}>
-                <Typography sx={{ textAlign: 'center' }}>
-                  <Link style={{textDecoration:"none",color:"white"}}  to={`/`}>Launches</Link>
+                <MenuItem   onClick={handleCloseNavMenu}>
+                  <Link style={{textDecoration:"none",color:"black"}}  to={`/`}>Launches</Link>
+                  </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Link style={{textDecoration:"none",color:"black"}}  to={`/saved`}>Saved Launches</Link>
+                  </MenuItem>
 
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center' }}>
-                  <Link style={{textDecoration:"none",color:"white"}}  to={`/saved`}>Saved Launches</Link>
 
-                  </Typography>
-                </MenuItem>
             </Menu>
           </Box>
           <SatelliteAltIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
