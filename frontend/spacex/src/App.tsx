@@ -3,7 +3,7 @@ import LaunchesTable from "./pages/launchesTable"
 import SavedLaunchesTable from "./pages/savedLaunchesTable"
 import Navbar from "./components/navbar"
 import { Bounce, ToastContainer } from "react-toastify"
-import { GlobalStyles,CssBaseline } from '@mui/material';
+import { GlobalStyles } from '@mui/material';
 
 function App() {
 
