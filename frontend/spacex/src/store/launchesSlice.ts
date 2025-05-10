@@ -14,18 +14,27 @@ const initialState:initialStateType = {
     loading:false,
     error:""
 }
-export const fetchLaunches = createAsyncThunk('launches/fetchLaunches', async () => {
-    try {
-        const response = await axios.get('https://api.spacexdata.com/v4/launches/past');
-        return response.data.slice(0, 30).sort(
-            (a: Launch, b: Launch) => new Date(a.date_utc).getTime() - new Date(b.date_utc).getTime()
-        );
-    } catch (err: any) {
-            throw new Error(err.response.data.message || 'An error occurred while fetching launches');
 
+export const fetchLaunches = createAsyncThunk(
+    'launches/fetchLaunches',
+    async (savedFlightNumbers: string[], { rejectWithValue }) => {
+    console.log(savedFlightNumbers)
+      try {
+        const response = await axios.post('https://api.spacexdata.com/v4/launches/query', {
+          query: {
+            flight_number: { $nin: savedFlightNumbers },
+          },
+          options: {
+            limit: 30,
+            sort: { date_utc: 'desc' },
+          },
+        });
+        return response.data.docs;
+      } catch (err: any) {
+        return rejectWithValue(err.response?.data?.message || 'An error occurred while fetching launches');
+      }
     }
-});
-
+  );
 export const fetchSavedLaunches = createAsyncThunk('launches/fetchSavedLaunches', async () => {
     try {
         const response = await axios.get('https://spacex-production-c1f9.up.railway.app/api/launches');
@@ -89,6 +98,7 @@ const launchesSlice = createSlice({
             })
             .addCase(saveLaunch.fulfilled,(state:initialStateType,action)=>{
                 state.savedLaunches.push(action.payload)
+                state.launches = state.launches.filter((launch:Launch)=>launch.flight_number != action.payload.flight_number)
                 state.error=""
 
             })

@@ -4,6 +4,7 @@ import SavedLaunchesTable from "./pages/savedLaunchesTable"
 import Navbar from "./components/navbar"
 import { Bounce, ToastContainer } from "react-toastify"
 import { GlobalStyles } from '@mui/material';
+import Error from "./pages/error404"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LaunchesTable/>}/>
       <Route path="/saved" element={<SavedLaunchesTable/>}/>
+      <Route path="*" element={<Error/>}/>
     </Routes>
 
     </BrowserRouter>

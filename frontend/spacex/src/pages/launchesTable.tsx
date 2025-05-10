@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../store/store';
 import { useEffect, useState } from 'react';
-import { fetchLaunches, saveLaunch } from '../store/launchesSlice';
+import { fetchLaunches, fetchSavedLaunches, saveLaunch } from '../store/launchesSlice';
 import type { Launch } from '../types/Launch';
 import LaunchCard from '../components/launchCard';
 import { Container, Grid } from '@mui/material';
@@ -11,10 +11,15 @@ const LaunchesTable = () => {
     const [savingId,setSavingId] = useState<string|undefined>("")
     const dispatch = useDispatch<AppDispatch>()
     const {launches,loading} = useSelector((state:RootState)=>state.launches)
-    useEffect((
-    )=>{
-        dispatch(fetchLaunches())
-    },[dispatch])
+    useEffect(() => {
+        const loadLaunches = async () => {
+          const savedResult = await dispatch(fetchSavedLaunches()).unwrap();
+          const savedFlightNumbers = savedResult.map((l: Launch) => l.flight_number);
+          dispatch(fetchLaunches(savedFlightNumbers));
+        };
+      
+        loadLaunches();
+      }, [dispatch]);
     const handleSave = async (launch: Launch) => {
         setSavingId(launch.flight_number);
         try {
@@ -48,7 +53,6 @@ const LaunchesTable = () => {
                     <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
                     <LaunchCard launch={launch}  onAction={handleSave} loader={launch.flight_number === savingId} actionLabel='Save Launch' actionColor='primary'/>
                 </Grid>
-
             ))}
             </Grid>    
         </Container>
